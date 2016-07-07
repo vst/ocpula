@@ -72,7 +72,11 @@ object RPC {
     * Prepares the base request.
     */
   def request (base: String, lib: String, func: String, params: String): Try[HttpResponse[String]] =
-    Try(Http(endpoint(base, lib, func)).header("Content-Type", "application/json").postData(params).asString)
+    Try(Http(endpoint(base, lib, func))
+      .timeout(connTimeoutMs=2000, readTimeoutMs = 10 * 60 * 1000)
+      .header("Content-Type", "application/json")
+      .postData(params)
+      .asString)
 
   /**
     * Parses the response and returns a proper [[Try]] value.

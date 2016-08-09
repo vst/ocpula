@@ -66,7 +66,7 @@ object RPC {
     * Returns the endpoint for a given function of a library.
     */
   def endpoint (base: String, lib: String, func: String): Uri =
-    base / "library" / lib / "R" / func / "json" ? ("force" -> "true") & ("null" -> "null")
+    base / "library" / lib / "R" / func / "json" ? ("force" -> "true") & ("null" -> "null") & ("digits" -> 12)
 
   /**
     * Prepares the base request.

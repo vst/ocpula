@@ -73,7 +73,7 @@ object RPC {
     */
   def request (base: String, lib: String, func: String, params: String): Try[HttpResponse[String]] =
     Try(Http(endpoint(base, lib, func))
-      .timeout(connTimeoutMs=2000, readTimeoutMs = 10 * 60 * 1000)
+      .timeout(connTimeoutMs=2000, readTimeoutMs = 120 * 60 * 1000)
       .header("Content-Type", "application/json")
       .postData(params)
       .asString)
